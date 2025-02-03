@@ -1,32 +1,9 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: "Event Lister",
-  description: "Event Lister web app",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
+"use client";
+import Header from "@/components/common/Header";
+export default function AppLayout({
+  children, // will be a page or nested layout
+}: {
   children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
-    </html>
-  );
+}) {
+  return <Header>{children}</Header>;
 }
