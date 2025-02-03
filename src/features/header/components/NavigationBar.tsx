@@ -15,8 +15,8 @@ export default function NavigationBar() {
       maxW={"1000px"}
       borderRadius={"full"}
       border={"1px solid"}
-      borderColor={"brand.muted"}
-      backdropFilter={"blur(40px)"}
+      borderColor={"gray.muted"}
+      backdropFilter={"blur(10px)"}
       zIndex={10}
     >
       <Text fontSize={"2xl"} color={"fg"}>

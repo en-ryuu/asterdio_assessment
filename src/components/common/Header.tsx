@@ -13,7 +13,7 @@ export default function Header({ children }: IWithChildrenProps) {
       {/* Header with glass effect */}
       <NavigationBar />
       {/* Main Content */}
-      <Box flex={1} w="full">
+      <Box flex={1} w="full" mt={32}>
         {children}
       </Box>
     </VStack>

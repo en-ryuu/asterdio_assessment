@@ -10,7 +10,7 @@ export default function Home() {
   const router = useRouter();
   return (
     <Header>
-      <Center mx={"auto"} minH={"100dvh"}>
+      <Center mx={"auto"} minH={"100%"}>
         <Stack
           textAlign={"center"}
           gap={{ base: 8, md: 14 }}
