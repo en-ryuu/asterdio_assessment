@@ -12,7 +12,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Button, Separator, Stack } from "@chakra-ui/react";
+import { Badge, Button, HStack, Separator, Stack } from "@chakra-ui/react";
 import React, {
   Dispatch,
   SetStateAction,
@@ -22,6 +22,7 @@ import React, {
   useState,
 } from "react";
 import { BiFilter } from "react-icons/bi";
+import { CgClose } from "react-icons/cg";
 import { FilterCategory } from "./FilterCategory";
 
 export type SelectedFiltersType = string[] | number[];
@@ -30,12 +31,14 @@ export interface ICardFilter<T extends object> {
   data: T[];
   filterKeys: (keyof T)[];
   setFilteredData: Dispatch<SetStateAction<T[] | undefined>>;
+  filteredData?: T[];
 }
 
 export default function CardFilter<T extends object>({
   data,
   filterKeys,
   setFilteredData,
+  filteredData,
 }: ICardFilter<T>) {
   const [selectedFilters, setSelectedFilters] = useState<
     Record<string, SelectedFiltersType>
@@ -65,12 +68,7 @@ export default function CardFilter<T extends object>({
 
   useEffect(() => {
     if (filters) {
-      setSelectedFilters(
-        Object.keys(filters).reduce((acc, key) => {
-          acc[key] = typeof filters[key][0] === "number" ? filters[key] : [];
-          return acc;
-        }, {} as Record<string, SelectedFiltersType>)
-      );
+      resetFilters();
     }
   }, [filters]);
 
@@ -98,6 +96,16 @@ export default function CardFilter<T extends object>({
     }));
   }, []);
 
+  const resetFilters = () => {
+    setSelectedFilters(
+      Object.keys(filters).reduce((acc, key) => {
+        acc[key] = typeof filters[key][0] === "number" ? filters[key] : [];
+        return acc;
+      }, {} as Record<string, SelectedFiltersType>)
+    );
+    setFilteredData(undefined);
+  };
+
   const onApplyFilters = () => {
     const filteredData = data.filter((item) => {
       return filterKeys
@@ -119,11 +127,28 @@ export default function CardFilter<T extends object>({
   return (
     <DrawerRoot>
       <DrawerBackdrop />
-      <DrawerTrigger asChild justifyContent={"flex-end"}>
-        <Button variant="outline" size="sm" w="fit-content">
-          <BiFilter /> Filter
-        </Button>
-      </DrawerTrigger>
+      <HStack
+        w="full"
+        justifyContent={filteredData ? "space-between" : "flex-end"}
+      >
+        {filteredData && (
+          <Badge
+            variant="outline"
+            colorPalette="brand"
+            size={"md"}
+            w="fit-content"
+          >
+            {filteredData?.length} items filtered.
+            <CgClose onClick={resetFilters} cursor={"pointer"} />
+          </Badge>
+        )}
+        <DrawerTrigger asChild>
+          <Button variant="subtle" size="sm" w="fit-content">
+            <BiFilter /> Filter
+          </Button>
+        </DrawerTrigger>
+      </HStack>
+
       <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Filter Events</DrawerTitle>

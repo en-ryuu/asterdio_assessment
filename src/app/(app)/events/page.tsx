@@ -19,6 +19,7 @@ export default function EventsPage() {
         data={eventsList ?? []}
         filterKeys={["location", "organizer", "guests"]}
         setFilteredData={setFilteredData}
+        filteredData={filteredData}
       />
       <Grid
         templateColumns={{
