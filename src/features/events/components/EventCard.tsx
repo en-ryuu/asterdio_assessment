@@ -1,20 +1,14 @@
+import LazyImage from "@/components/common/LazyImage";
 import { Button } from "@/components/ui/button";
 import { navigationRoutes } from "@/config/navigationroutes";
-import {
-  Badge,
-  Box,
-  Card,
-  Image,
-  LinkBox,
-  LinkOverlay,
-  Text,
-} from "@chakra-ui/react";
+import { generateSlug } from "@/utils/slugGenerator";
+import { Badge, Box, Card, LinkBox, LinkOverlay, Text } from "@chakra-ui/react";
 import { BiHeart } from "react-icons/bi";
 import { IEventData } from "../types";
 
 export const EventCard = ({ event }: { event: IEventData }) => {
   return (
-    <LinkBox all={"unset"}>
+    <LinkBox>
       <Card.Root
         flexDirection="row"
         overflow="hidden"
@@ -30,20 +24,21 @@ export const EventCard = ({ event }: { event: IEventData }) => {
       >
         <LinkOverlay
           href={navigationRoutes.eventDetails?.replace(
-            ":id",
-            event.id.toString()
+            ":eventName",
+            generateSlug(event.eventName, event.id)
           )}
-        ></LinkOverlay>
-        <Image
+        />
+        <LazyImage
+          h="200px"
+          w="200px"
           objectFit="cover"
-          h="100%"
-          w="190px"
           src={event.image}
           alt={event.eventName}
           className="eventImage"
           transition="all 0.4s ease-in"
         />
-        <Box>
+
+        <Box flex={1}>
           <Card.Body>
             <Card.Title mb="2" fontSize={"md"}>
               <Text lineClamp={1}>{event.eventName}</Text>
