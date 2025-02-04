@@ -1,7 +1,7 @@
 "use client";
 import EmptyStateComponent from "@/components/common/EmptyState";
 import CardFilter from "@/components/common/Filter/CardFilter";
-import PageLayout from "@/components/common/PageLayout";
+import PageLayout from "@/components/layouts/PageLayout";
 import { EventCard } from "@/features/events/components/EventCard";
 import EventsCardSkeleton from "@/features/events/components/EventsCardSkeleton";
 import { IEventData } from "@/features/events/types";

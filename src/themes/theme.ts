@@ -19,6 +19,7 @@ export const system = createSystem(defaultConfig, {
       scrollbarGutter: "auto",
       scrollbarWidth: "thin",
       scrollbarColor: "muted",
+      fontSize: "85%",
     },
     "input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active":
       {

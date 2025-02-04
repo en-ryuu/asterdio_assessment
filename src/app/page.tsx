@@ -1,15 +1,15 @@
 "use client";
-import Header from "@/components/common/Header";
 import { Button } from "@/components/ui/button";
 import { navigationRoutes } from "@/config/navigationroutes";
 import { Center, Heading, Stack, Text } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 import { BiCalendar, BiStar } from "react-icons/bi";
+import AppLayout from "./(app)/layout";
 
 export default function Home() {
   const router = useRouter();
   return (
-    <Header>
+    <AppLayout>
       <Center mx={"auto"} minH={"100%"}>
         <Stack
           textAlign={"center"}
@@ -49,6 +49,6 @@ export default function Home() {
           </Center>
         </Stack>
       </Center>
-    </Header>
+    </AppLayout>
   );
 }

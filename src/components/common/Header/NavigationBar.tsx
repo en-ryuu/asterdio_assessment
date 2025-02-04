@@ -8,15 +8,16 @@ export default function NavigationBar() {
     <HStack
       position={"fixed"}
       w="100%"
-      top={8}
-      p={4}
+      top={4}
+      p={6}
       px={10}
       justifyContent={"space-between"}
-      maxW={"1000px"}
+      maxW={"1200px"}
       borderRadius={"full"}
-      border={"1px solid"}
+      border={"2px solid"}
       borderColor={"gray.muted"}
       backdropFilter={"blur(10px)"}
+      boxShadow={"inset 1px 0 20px 30px var(--chakra-colors-bg)"}
       zIndex={10}
     >
       <Text fontSize={"2xl"} color={"fg"}>
