@@ -3,6 +3,7 @@ import {
   BreadcrumbLink,
   BreadcrumbRoot,
 } from "@/components/ui/breadcrumb";
+import { decodeSlug } from "@/utils/slugGenerator";
 import Link from "next/link";
 
 export default function BreadcrumbComponent({
@@ -27,14 +28,19 @@ export default function BreadcrumbComponent({
       {breadcrumbSegments.map((segment, index) => {
         const href = `/${breadcrumbSegments.slice(0, index + 1).join("/")}`;
         const isLast = index === breadcrumbSegments.length - 1;
+        const decodedSegment =
+          segment.includes("_") || segment.includes("%")
+            ? decodeSlug(segment)
+            : segment;
 
+        const formattedSegment = formatSegment(decodedSegment);
         return isLast ? (
           <BreadcrumbCurrentLink key={href}>
-            {formatSegment(segment)}
+            {formattedSegment}
           </BreadcrumbCurrentLink>
         ) : (
           <BreadcrumbLink key={href} as={Link} href={href}>
-            {formatSegment(segment)}
+            {formattedSegment}
           </BreadcrumbLink>
         );
       })}
