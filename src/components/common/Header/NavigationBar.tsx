@@ -1,6 +1,6 @@
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { headerNavigation } from "@/config/headerNavigation";
-import { HStack, Text } from "@chakra-ui/react";
+import { Highlight, HStack, Image } from "@chakra-ui/react";
 import Link from "next/link";
 
 export default function NavigationBar() {
@@ -8,21 +8,30 @@ export default function NavigationBar() {
     <HStack
       position={"fixed"}
       w="100%"
+      maxWidth={"min(1200px,94vw)"}
       top={4}
-      p={6}
+      py={4}
       px={10}
       justifyContent={"space-between"}
-      maxW={"1200px"}
       borderRadius={"full"}
       border={"2px solid"}
       borderColor={"gray.muted"}
       backdropFilter={"blur(10px)"}
-      boxShadow={"inset 1px 0 20px 30px var(--chakra-colors-bg)"}
+      boxShadow={"inset 1px 0 20px 20px var(--chakra-colors-bg)"}
       zIndex={10}
     >
-      <Text fontSize={"2xl"} color={"fg"}>
-        Logo
-      </Text>
+      <HStack gap={1}>
+        <Image
+          alt="logo"
+          src="/event_planner_logo.png"
+          height={"30px"}
+          mr={3}
+        />
+        <Highlight query={["Event"]} styles={{ color: "brand.solid" }}>
+          Event Planner
+        </Highlight>
+      </HStack>
+
       <HStack gap={6}>
         {headerNavigation?.map((navItem, index) => (
           <Link key={navItem.label + index} href={navItem.href} color={"fg"}>
