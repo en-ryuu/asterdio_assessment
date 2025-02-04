@@ -27,7 +27,7 @@ export default function NavigationBar() {
           height={"30px"}
           mr={3}
         />
-        <Highlight query={["Event"]} styles={{ color: "brand.solid" }}>
+        <Highlight query={["Event"]} styles={{ color: "brand.fg" }}>
           Event Planner
         </Highlight>
       </HStack>
