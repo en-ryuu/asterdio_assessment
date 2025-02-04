@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Assessment Asterdio
+
+This is a **Next.js 15** project configured with Chakra UI, React Query, and other essential dependencies.
 
 ## Getting Started
 
-First, run the development server:
+### Install Dependencies
+
+Run the following command to install all required dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start the Next.js development server:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open <http://localhost:3000> in your browser.
 
-## Learn More
+### Project Directory Structure for Asterdio
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+📦 src
+┣ 📂 components         # Reusable UI components (Buttons, Modals, etc.)
+┣ 📂 features           # Feature-based modules (User, Dashboard, etc.)
+┣ 📂 pages              # Next.js Pages (Pages Router for individual routes)
+┣ 📂 app                # App Router (Next.js 15 App Router for layout, routing, etc.)
+┣ 📂 themes             # Chakra UI theme setup and customizations
+┣ 📂 utils              # Helper functions (API calls, Utility functions, etc.)
+┗ 📜 app/page.tsx       # Main entry point for Next.js App Router (root page)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Chakra UI Type Generation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Generate types for custom chakra UI tokens (based on theme in src/themes/theme.ts)
+:
 
-## Deploy on Vercel
+```bash
+yarn chakraTypegen
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Technologies Used
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Next.js 15**: App Router setup for efficient routing and layouts.
+- **React 19**: Latest version of React for UI rendering.
+- **Chakra UI 3.6**: UI component library for fast, accessible design.
+- **React Query 5**: Data fetching and caching.
+- **Axios**: Used for API requests.
+- **Next Themes**: Enables dark mode support.
+- **ESLint**: Maintains code quality.
+
+### Deployment
+
+To deploy the application, refer to Next.js deployment documentation:
+https://nextjs.org/docs/deployment
