@@ -1,7 +1,7 @@
 import { ColorModeButton } from "@/components/ui/color-mode";
+import { headerNavigation } from "@/config/headerNavigation";
 import { HStack, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import { headerNavigation } from "../config";
 
 export default function NavigationBar() {
   return (

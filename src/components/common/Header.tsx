@@ -1,6 +1,6 @@
-import NavigationBar from "@/features/header/components/NavigationBar";
 import { IWithChildrenProps } from "@/types/commonTypes";
 import { Box, VStack } from "@chakra-ui/react";
+import NavigationBar from "./Header/NavigationBar";
 
 export default function Header({ children }: IWithChildrenProps) {
   return (
