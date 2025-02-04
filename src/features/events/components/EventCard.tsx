@@ -62,10 +62,16 @@ export const EventCard = ({ event }: { event: IEventData }) => {
             <Card.Title mb="2" fontSize={"md"}>
               <Text lineClamp={2}>{event.eventName}</Text>
             </Card.Title>
-            <Card.Description fontSize={"xs"} mb={2} asChild flex={1}>
-              <Text lineClamp={2}> {event.description}</Text>
+            <Card.Description fontSize={"xs"} mb={2} lineClamp={3}>
+              {event.description}
             </Card.Description>
-            <DataList.Root orientation="horizontal" gap={2} size={"sm"}>
+            <DataList.Root
+              orientation="horizontal"
+              gap={2}
+              size={"sm"}
+              flex={1}
+              justifyContent={"end"}
+            >
               {eventDetails.map((item) => (
                 <DataList.Item key={item.label}>
                   <DataList.ItemLabel>
