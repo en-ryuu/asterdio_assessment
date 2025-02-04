@@ -23,14 +23,17 @@ Open <http://localhost:3000> in your browser.
 ### Project Directory Structure for Asterdio
 
 ```sh
-📦 src
-┣ 📂 components         # Reusable UI components (Buttons, Modals, etc.)
-┣ 📂 features           # Feature-based modules (User, Dashboard, etc.)
-┣ 📂 pages              # Next.js Pages (Pages Router for individual routes)
-┣ 📂 app                # App Router (Next.js 15 App Router for layout, routing, etc.)
-┣ 📂 themes             # Chakra UI theme setup and customizations
-┣ 📂 utils              # Helper functions (API calls, Utility functions, etc.)
-┗ 📜 app/page.tsx       # Main entry point for Next.js App Router (root page)
+📦 src                  # Main source directory
+ ┣ 📂 app               # Next.js 15 App Router
+ ┃ ┣ 📂 api             # Server-side API routes (Next.js Route Handlers)
+ ┣ 📂 components        # Reusable UI components (Buttons, Modals, Inputs, etc.)
+ ┣ 📂 features          # Feature-based modules (e.g., events)
+ ┣ 📂 config            # Configuration files (constants)
+ ┣ 📂 hooks             # shared hooks used across the entire application
+ ┣ 📂 services          # API calls, data fetching, and service logic
+ ┣ 📂 themes            # Chakra UI theme customization and styling
+ ┣ 📂 types             # shared types
+ ┗ 📂 utils             # shared utility functions
 ```
 
 ### Chakra UI Type Generation
@@ -55,4 +58,4 @@ yarn chakraTypegen
 ### Deployment
 
 To deploy the application, refer to Next.js deployment documentation:
-https://nextjs.org/docs/deployment
+<https://nextjs.org/docs/deployment>
