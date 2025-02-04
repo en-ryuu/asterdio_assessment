@@ -14,3 +14,18 @@ export const useFetchEvents = () => {
     select: (data) => data?.data?.data || [],
   });
 };
+
+const fetchEventById = (id: string) => () => {
+  return httpClient.get<CommonResponse<IEventData>>(api.events.fetch, {
+    params: id,
+  });
+};
+
+export const useFetchEventById = (id: string) => {
+  return useQuery({
+    enabled: !!id,
+    queryKey: [api.events.fetch],
+    queryFn: fetchEventById(id),
+    select: (data) => data?.data?.data || [],
+  });
+};

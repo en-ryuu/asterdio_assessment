@@ -1,17 +1,17 @@
 export const colors = {
   brand: {
     tokens: {
-      50: { value: "#f4faff" },
-      100: { value: "#e1f0ff" },
-      200: { value: "#c2e0ff" },
-      300: { value: "#96c8ff" },
-      400: { value: "#6daeff" },
-      500: { value: "#428eff" },
-      600: { value: "#2f74d8" },
-      700: { value: "#2258a6" },
-      800: { value: "#153c73" },
-      900: { value: "#0c264d" },
-      950: { value: "#05162e" },
+      50: { value: "#F3FFFF" },
+      100: { value: "#E3E9FE" },
+      200: { value: "#C6D2FE" },
+      300: { value: "#A8BAFD" },
+      400: { value: "#8DA9FC" },
+      500: { value: "#89A6FB" },
+      600: { value: "#6D87D8" },
+      700: { value: "#5369B5" },
+      800: { value: "#3A4D91" },
+      900: { value: "#26356E" },
+      950: { value: "#18214E" },
     },
     semanticTokens: {
       solid: {
@@ -22,31 +22,31 @@ export const colors = {
       },
       contrast: {
         value: {
-          _light: "{colors.brand.100}",
-          _dark: "{colors.brand.800}",
+          _light: "{colors.brand.50}",
+          _dark: "{colors.brand.900}",
         },
       },
       fg: {
         value: {
-          _light: "{colors.brand.700}",
+          _light: "{colors.brand.800}",
           _dark: "{colors.brand.200}",
         },
       },
       muted: {
         value: {
-          _light: "{colors.brand.100}",
+          _light: "{colors.brand.200}",
           _dark: "{colors.brand.700}",
         },
       },
       subtle: {
         value: {
-          _light: "{colors.brand.200}",
+          _light: "{colors.brand.300}",
           _dark: "{colors.brand.600}",
         },
       },
       emphasized: {
         value: {
-          _light: "{colors.brand.300}",
+          _light: "{colors.brand.400}",
           _dark: "{colors.brand.500}",
         },
       },
