@@ -15,17 +15,17 @@ export const useFetchEvents = () => {
   });
 };
 
-const fetchEventById = (id: string) => () => {
+const fetchEventById = (id: string) => {
   return httpClient.get<CommonResponse<IEventData>>(api.events.fetch, {
-    params: id,
+    params: { id },
   });
 };
 
 export const useFetchEventById = (id: string) => {
   return useQuery({
     enabled: !!id,
-    queryKey: [api.events.fetch],
-    queryFn: fetchEventById(id),
+    queryKey: [api.events.fetch, id],
+    queryFn: () => fetchEventById(id),
     select: (data) => data?.data?.data || [],
   });
 };
