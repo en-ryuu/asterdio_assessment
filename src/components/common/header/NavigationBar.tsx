@@ -1,10 +1,13 @@
+"use state";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { headerNavigation } from "@/config/headerNavigation";
-import { Highlight, HStack, Image } from "@chakra-ui/react";
+import { Highlight, HStack, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import MobileNav from "./MobileNav";
 
 export default function NavigationBar() {
+  const pathname = usePathname();
   return (
     <HStack
       position={"fixed"}
@@ -34,14 +37,20 @@ export default function NavigationBar() {
       </HStack>
 
       <HStack gap={6} display={["none", "none", "flex"]}>
-        {headerNavigation?.map((navItem, index) => (
-          <Link key={navItem.label + index} href={navItem.href} color={"fg"}>
-            {navItem?.label}
-          </Link>
-        ))}
+        {headerNavigation?.map((navItem, index) => {
+          return (
+            <Link key={navItem.label + index} href={navItem.href}>
+              <Text
+                color={pathname === navItem.href ? "brand.emphasized" : "fg"}
+              >
+                {navItem?.label}
+              </Text>
+            </Link>
+          );
+        })}
         <ColorModeButton />
       </HStack>
-      <MobileNav />
+      <MobileNav pathname={pathname} />
     </HStack>
   );
 }

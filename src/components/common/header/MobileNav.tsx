@@ -12,7 +12,7 @@ import { headerNavigation } from "@/config/headerNavigation";
 import { Center, DrawerFooter, Link, VStack } from "@chakra-ui/react";
 import { CgMenu } from "react-icons/cg";
 
-export default function MobileNav() {
+export default function MobileNav({ pathname }: { pathname: string }) {
   return (
     <DrawerRoot>
       <DrawerTrigger fontSize={"1.6rem"} display={["flex", "flex", "none"]}>
@@ -34,7 +34,12 @@ export default function MobileNav() {
                 w="full"
                 justifyContent={"center"}
               >
-                <Center fontSize={"lg"}>{navItem.label}</Center>
+                <Center
+                  fontSize={"lg"}
+                  color={pathname === navItem.href ? "brand.emphasized" : "fg"}
+                >
+                  {navItem.label}
+                </Center>
               </Link>
             ))}
           </VStack>
