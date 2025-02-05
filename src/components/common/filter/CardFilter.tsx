@@ -143,6 +143,7 @@ export default function CardFilter<T extends object>({
     );
     setFilteredData(undefined);
     setSubFilteredData(undefined);
+    setSearchQuery("");
   };
 
   const onApplyFilters = () => {
