@@ -12,6 +12,12 @@ Run the following command to install all required dependencies:
 yarn
 ```
 
+Create a .env.local file with the following:
+
+```bash
+BACKEND_API_BASE_URL= http://localhost:3000
+```
+
 Start the Next.js development server:
 
 ```bash
