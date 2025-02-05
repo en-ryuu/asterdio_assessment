@@ -1,6 +1,6 @@
 import { IWithChildrenProps } from "@/types/commonTypes";
 import { Box, Center, VStack } from "@chakra-ui/react";
-import NavigationBar from "../common/Header/NavigationBar";
+import NavigationBar from "../common/header/NavigationBar";
 
 export default function AppLayoutWrapper({ children }: IWithChildrenProps) {
   return (
