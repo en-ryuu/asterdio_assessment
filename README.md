@@ -63,5 +63,5 @@ yarn chakraTypegen
 
 ### Deployment
 
-To deploy the application, refer to Next.js deployment documentation:
-<https://nextjs.org/docs/deployment>
+Deployed in netlify
+<https://asterdio-abhishek.netlify.app>
