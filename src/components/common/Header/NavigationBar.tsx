@@ -2,6 +2,7 @@ import { ColorModeButton } from "@/components/ui/color-mode";
 import { headerNavigation } from "@/config/headerNavigation";
 import { Highlight, HStack, Image } from "@chakra-ui/react";
 import Link from "next/link";
+import MobileNav from "./MobileNav";
 
 export default function NavigationBar() {
   return (
@@ -32,7 +33,7 @@ export default function NavigationBar() {
         </Highlight>
       </HStack>
 
-      <HStack gap={6}>
+      <HStack gap={6} display={["none", "none", "flex"]}>
         {headerNavigation?.map((navItem, index) => (
           <Link key={navItem.label + index} href={navItem.href} color={"fg"}>
             {navItem?.label}
@@ -40,6 +41,7 @@ export default function NavigationBar() {
         ))}
         <ColorModeButton />
       </HStack>
+      <MobileNav />
     </HStack>
   );
 }
