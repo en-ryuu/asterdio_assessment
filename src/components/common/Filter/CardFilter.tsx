@@ -129,9 +129,13 @@ export default function CardFilter<T extends object>({
       <DrawerBackdrop />
       <HStack
         w="full"
-        justifyContent={filteredData ? "space-between" : "flex-end"}
+        justifyContent={
+          filteredData && filteredData?.length != data.length
+            ? "space-between"
+            : "flex-end"
+        }
       >
-        {filteredData && (
+        {filteredData && filteredData?.length != data.length && (
           <Badge
             variant="outline"
             colorPalette="brand"
@@ -143,7 +147,7 @@ export default function CardFilter<T extends object>({
           </Badge>
         )}
         <DrawerTrigger asChild>
-          <Button variant="subtle" size="sm" w="fit-content">
+          <Button variant="outline" size="sm" w="fit-content">
             <BiFilter /> Filter
           </Button>
         </DrawerTrigger>

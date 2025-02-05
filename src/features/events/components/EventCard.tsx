@@ -1,21 +1,22 @@
+import FavouriteButton from "@/components/common/FavouriteButton";
 import LazyImage from "@/components/common/LazyImage";
-import { Tooltip } from "@/components/ui/tooltip";
 import { navigationRoutes } from "@/config/navigationroutes";
 import { generateSlug } from "@/utils/slugGenerator";
 import {
   Box,
   Card,
   DataList,
-  IconButton,
   LinkBox,
   LinkOverlay,
   Text,
 } from "@chakra-ui/react";
 import dayjs from "dayjs";
-import { BiBuildings, BiHeartCircle, BiMap, BiTime } from "react-icons/bi";
+import { BiBuildings, BiMap, BiTime } from "react-icons/bi";
+import { useFavouritesStore } from "../store/useFavouritesStore";
 import { IEventData } from "../types";
 
 export const EventCard = ({ event }: { event: IEventData }) => {
+  const { toggleFavourite, isFavourite } = useFavouritesStore();
   const eventDetails = [
     { label: "Location", value: event.location, icon: <BiMap /> },
     {
@@ -28,7 +29,7 @@ export const EventCard = ({ event }: { event: IEventData }) => {
   return (
     <LinkBox>
       <Card.Root
-        flexDirection={["column", "row"]}
+        flexDirection={["column", "column", "row"]}
         overflow="hidden"
         w="full"
         colorPalette={"brand"}
@@ -50,7 +51,7 @@ export const EventCard = ({ event }: { event: IEventData }) => {
         <LazyImage
           flex={1}
           h="200px"
-          w={["100%", "200px"]}
+          w={["100%", "100%", "200px"]}
           objectFit="cover"
           src={event.image}
           alt={event.eventName}
@@ -74,7 +75,7 @@ export const EventCard = ({ event }: { event: IEventData }) => {
             >
               {eventDetails.map((item) => (
                 <DataList.Item key={item.label}>
-                  <DataList.ItemLabel>
+                  <DataList.ItemLabel minW={"max(80px, 3rem)"}>
                     {item.icon} {item.label}
                   </DataList.ItemLabel>
                   <DataList.ItemValue flex={1}>{item.value}</DataList.ItemValue>
@@ -82,24 +83,12 @@ export const EventCard = ({ event }: { event: IEventData }) => {
               ))}
             </DataList.Root>
           </Card.Body>
-          {/* Icons */}
-          <Tooltip content="Add this to your favourites">
-            <IconButton
-              aria-label="Add to favourites"
-              variant="outline"
-              pos={"absolute"}
-              top={3}
-              right={3}
-              size={"sm"}
-            >
-              <BiHeartCircle
-                style={{
-                  height: "1.5rem",
-                  width: "1.5rem",
-                }}
-              />
-            </IconButton>
-          </Tooltip>
+
+          {/* Favourites button */}
+          <FavouriteButton
+            onClickAction={() => toggleFavourite(event.id)}
+            isFavourite={isFavourite(event.id)}
+          />
         </Box>
       </Card.Root>
     </LinkBox>
