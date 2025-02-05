@@ -3,7 +3,7 @@ import { HStack, VStack } from "@chakra-ui/react";
 
 function EventDetailsSkeleton() {
   return (
-    <VStack w="full" gap={6}>
+    <VStack w="full" gap={6} flexWrap={"wrap"}>
       <Skeleton height="200px" w="full" />
       <HStack w="full">
         {Array.from({ length: 3 })?.map((_, index) => (
