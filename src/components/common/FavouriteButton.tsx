@@ -22,7 +22,8 @@ export default function FavouriteButton({
     >
       <IconButton
         aria-label="Add to favourites"
-        variant="outline"
+        variant={"surface"}
+        colorPalette={"gray"}
         pos={"absolute"}
         top={3}
         right={3}
