@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
-  title: "Event Lister",
-  description: "Event Lister web app",
+  title: "Event Planner",
+  description: "Event planner asterdio assessment",
 };
 
 export default function RootLayout({
