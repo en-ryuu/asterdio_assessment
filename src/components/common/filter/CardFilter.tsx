@@ -12,7 +12,16 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Badge, Button, HStack, Separator, Stack } from "@chakra-ui/react";
+import { InputGroup } from "@/components/ui/input-group";
+import {
+  Badge,
+  Button,
+  HStack,
+  Input,
+  Separator,
+  Stack,
+} from "@chakra-ui/react";
+import dayjs from "dayjs";
 import React, {
   Dispatch,
   SetStateAction,
@@ -21,8 +30,9 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { BiFilter } from "react-icons/bi";
+import { BiFilter, BiSearch } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
+import { HiSortAscending, HiSortDescending } from "react-icons/hi";
 import { FilterCategory } from "./FilterCategory";
 
 export type SelectedFiltersType = string[] | number[];
@@ -32,14 +42,22 @@ export interface ICardFilter<T extends object> {
   filterKeys: (keyof T)[];
   setFilteredData: Dispatch<SetStateAction<T[] | undefined>>;
   filteredData?: T[];
+  searchKey: keyof T;
+  dateKey: keyof T;
 }
 
 export default function CardFilter<T extends object>({
   data,
   filterKeys,
+  searchKey,
+  dateKey,
   setFilteredData,
   filteredData,
 }: ICardFilter<T>) {
+  const [subFilteredData, setSubFilteredData] = useState<T[]>();
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [sortByAsc, setSortByAsc] = useState(false);
+
   const [selectedFilters, setSelectedFilters] = useState<
     Record<string, SelectedFiltersType>
   >({});
@@ -71,6 +89,26 @@ export default function CardFilter<T extends object>({
       resetFilters();
     }
   }, [filters]);
+
+  useEffect(() => {
+    let newData = [...(subFilteredData ?? data)];
+
+    if (searchQuery.trim()) {
+      newData = newData.filter((item) =>
+        String(item[searchKey] ?? "")
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase())
+      );
+    }
+
+    newData.sort((a, b) => {
+      const dateA = dayjs(a[dateKey] as string).valueOf();
+      const dateB = dayjs(b[dateKey] as string).valueOf();
+      return sortByAsc ? dateB - dateA : dateA - dateB;
+    });
+
+    setFilteredData(newData ?? null);
+  }, [subFilteredData, searchQuery, sortByAsc]);
 
   const handleCheckboxChange = (category: string, value: string) => {
     setSelectedFilters((prev) => {
@@ -104,6 +142,7 @@ export default function CardFilter<T extends object>({
       }, {} as Record<string, SelectedFiltersType>)
     );
     setFilteredData(undefined);
+    setSubFilteredData(undefined);
   };
 
   const onApplyFilters = () => {
@@ -121,35 +160,57 @@ export default function CardFilter<T extends object>({
         })
         ?.every((value) => value);
     });
-    setFilteredData(filteredData);
+    setSubFilteredData(filteredData);
   };
 
   return (
     <DrawerRoot>
       <DrawerBackdrop />
-      <HStack
-        justifyContent={
-          filteredData && filteredData?.length != data.length
-            ? "space-between"
-            : "flex-end"
-        }
-      >
-        {filteredData && filteredData?.length != data.length && (
-          <Badge
-            variant="outline"
-            colorPalette="brand"
-            size={"md"}
-            w="fit-content"
-          >
-            {filteredData?.length} items filtered.
-            <CgClose onClick={resetFilters} cursor={"pointer"} />
-          </Badge>
-        )}
-        <DrawerTrigger asChild>
-          <Button variant="outline" size="sm" w="fit-content">
-            <BiFilter /> Filter
-          </Button>
-        </DrawerTrigger>
+      <HStack>
+        <InputGroup endElement={<BiSearch />} marginEnd={"auto"}>
+          <Input
+            placeholder="Search..."
+            value={searchQuery}
+            maxW={"300px"}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </InputGroup>
+        <Button onClick={() => setSortByAsc(!sortByAsc)} size={"sm"}>
+          Date{" "}
+          {sortByAsc ? (
+            <>
+              Dec <HiSortDescending />
+            </>
+          ) : (
+            <>
+              Asc <HiSortAscending />
+            </>
+          )}
+        </Button>
+        <HStack
+          justifyContent={
+            filteredData && filteredData?.length != data.length
+              ? "space-between"
+              : "flex-end"
+          }
+        >
+          {filteredData && filteredData?.length != data.length && (
+            <Badge
+              variant="outline"
+              colorPalette="brand"
+              size={"md"}
+              w="fit-content"
+            >
+              {filteredData?.length} items filtered.
+              <CgClose onClick={resetFilters} cursor={"pointer"} />
+            </Badge>
+          )}
+          <DrawerTrigger asChild>
+            <Button variant="outline" size="sm" w="fit-content">
+              <BiFilter /> Filter
+            </Button>
+          </DrawerTrigger>
+        </HStack>
       </HStack>
 
       <DrawerContent>
