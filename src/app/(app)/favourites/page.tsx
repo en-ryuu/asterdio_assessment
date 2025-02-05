@@ -15,7 +15,9 @@ export default function FavouritesPage() {
   return (
     <CardListPageLayout<IEventData>
       title="Favourites"
+      searchKey="eventName"
       data={favouriteEvents}
+      dateKey={"time"}
       isLoading={isPending}
       filterKeys={["location", "organizer", "guests"]}
       renderItem={(event) => <EventCard event={event} key={event.id} />}

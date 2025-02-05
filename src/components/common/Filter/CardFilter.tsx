@@ -128,7 +128,6 @@ export default function CardFilter<T extends object>({
     <DrawerRoot>
       <DrawerBackdrop />
       <HStack
-        w="full"
         justifyContent={
           filteredData && filteredData?.length != data.length
             ? "space-between"

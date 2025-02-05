@@ -16,6 +16,8 @@ export default function EventsPage() {
     <CardListPageLayout<IEventData>
       title="Events"
       data={eventsList ?? []}
+      searchKey="eventName"
+      dateKey={"time"}
       isLoading={isPending}
       filterKeys={["location", "organizer", "guests"]}
       renderItem={(event) => <EventCard event={event} key={event.id} />}
