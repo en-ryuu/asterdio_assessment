@@ -6,7 +6,7 @@ import { decodeSlug } from "@/utils/slugGenerator";
 import { Card, DataList, HStack, Text, VStack } from "@chakra-ui/react";
 import dayjs from "dayjs";
 import { useParams } from "next/navigation";
-import { BiBuildings, BiMap, BiTime } from "react-icons/bi";
+import { BiBuildings, BiMap, BiTime, BiUser } from "react-icons/bi";
 
 export default function EventDetails() {
   const { eventName } = useParams();
@@ -28,6 +28,7 @@ export default function EventDetails() {
       value: dayjs(eventDetails?.time).format("ddd, MMM D, YYYY h:mm A"),
       icon: BiTime,
     },
+    { label: "No. of Guests", value: eventDetails?.guests, icon: BiUser },
   ];
 
   return (
