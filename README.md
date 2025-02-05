@@ -9,7 +9,7 @@ This is a **Next.js 15** project configured with Chakra UI, React Query, and oth
 Run the following command to install all required dependencies:
 
 ```bash
-yarn install
+yarn
 ```
 
 Start the Next.js development server:
